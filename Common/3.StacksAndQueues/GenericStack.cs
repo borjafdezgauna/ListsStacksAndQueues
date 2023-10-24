@@ -29,7 +29,7 @@ namespace Common
 
         public T Pop()
         {
-            //TODO #6: Remove the first object of the list and return it
+            //TODO #6: Remove the last object of the list and return it
 
             return default(T);
         }

@@ -49,7 +49,7 @@ public class GenericList<T> : IGenericList<T>
 
     public T Get(int index)
     {
-        //TODO #3: return the element on the index-th position. YOU MUST USE GetNode(int). Return the default value for object class T if the position is out of bounds
+        //TODO #3: return the element on the index-th position. YOU MUST USE FindNode(int). Return the default value for object class T if the position is out of bounds
 
         return default(T);
     }
