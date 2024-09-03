@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 namespace ListsStacksAndQueues
 {
@@ -69,6 +70,12 @@ namespace ListsStacksAndQueues
         public void Clear()
         {
             //TODO #6: remove all the elements on the list
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            //TODO #7: return all items one by one using "yield return ..."
+            return null;
         }
     }
 }

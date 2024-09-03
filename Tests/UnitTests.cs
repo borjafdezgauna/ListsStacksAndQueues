@@ -9,12 +9,28 @@ namespace Tests
         {
             Assert.True(IntTests.IntListTest(new IntList()));
         }
+
+        [Fact]
+        public void IntListEnumerator()
+        {
+            Assert.True(IntTests.ListEnumeratorTest(new IntList()));
+
+        }
+
         [Fact]
         public void IntArrayListBasicTests()
         {
 
             Assert.True(IntTests.IntListTest(new IntArrayList(1000000)));
         }
+
+        [Fact]
+        public void IntArrayListEnumerator()
+        {
+            Assert.True(IntTests.ListEnumeratorTest(new IntArrayList(1000000)));
+
+        }
+
         [Fact]
         public void GenericListBasicTests()
         {
@@ -22,11 +38,22 @@ namespace Tests
             Assert.True(IntTests.GenericListTest(new GenericList<int>()));
         }
         [Fact]
+        public void GenericListEnumerator()
+        {
+            Assert.True(IntTests.ListEnumeratorTest(new GenericList<int>()));
+
+        }
+        [Fact]
         public void GenericArrayListBasicTests()
         {
             Assert.True(IntTests.GenericListTest(new GenericArrayList<int>(1000000)));
         }
+        [Fact]
+        public void GenericArrayListEnumerator()
+        {
+            Assert.True(IntTests.ListEnumeratorTest(new GenericArrayList<int>(1000000)));
 
+        }
         [Fact]
         public void GenericStackIntBasicTests()
         {

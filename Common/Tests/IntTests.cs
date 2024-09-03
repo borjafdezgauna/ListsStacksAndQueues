@@ -228,5 +228,35 @@ namespace ListsStacksAndQueues
             }
             return true;
         }
+
+        public static bool ListEnumeratorTest(IList myList)
+        {
+
+            int[] initialValues = new int[5];
+            initialValues[0] = 3;
+            initialValues[1] = 6;
+            initialValues[2] = 2;
+            initialValues[3] = 9;
+            initialValues[4] = -3;
+
+            for (int i = 0; i < initialValues.Length; i++)
+                myList.Add(initialValues[i]);
+
+            foreach (int i in myList)
+                Console.WriteLine(i);
+
+            return true;
+        }
+
+        public static bool ListEnumeratorTest(IGenericList<int> myList)
+        {
+            for (int i = 0; i < 10; i++)
+                myList.Add(i);
+
+            foreach (int i in myList)
+                Console.WriteLine(i);
+
+            return true;
+        }
     }
 }
