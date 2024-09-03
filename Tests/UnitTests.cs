@@ -10,7 +10,7 @@ namespace Tests
             Assert.True(IntTests.IntListTest(new IntList()));
         }
         [Fact]
-        public void ArrayListBasicTests()
+        public void IntArrayListBasicTests()
         {
 
             Assert.True(IntTests.IntListTest(new IntArrayList(1000000)));
