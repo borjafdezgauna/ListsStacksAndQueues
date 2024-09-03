@@ -1,5 +1,5 @@
 using System;
-namespace Common
+namespace ListsStacksAndQueues
 {
     public class GenericArrayList<T> : IGenericList<T> where T : new()
     {

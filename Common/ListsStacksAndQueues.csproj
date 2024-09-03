@@ -4,8 +4,6 @@
     <TargetFramework>net6</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="2.GenericLists\ewcesgyg.yvt~" />
-  </ItemGroup>
+
 
 </Project>

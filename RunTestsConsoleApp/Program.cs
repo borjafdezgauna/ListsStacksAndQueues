@@ -1,7 +1,7 @@
 
 using System;
 using Common;
-using static System.Net.Mime.MediaTypeNames;
+using ListsStacksAndQueues;
 
 namespace RunTestsConsoleApp
 {
@@ -9,8 +9,6 @@ namespace RunTestsConsoleApp
     {
         public static void Main(string[] args)
         {
-            string teamId = "borjafdezgauna";
-
             Console.WriteLine("## Testing IntList class");
             if (!IntTests.IntListTest(new IntList()))
                 return;

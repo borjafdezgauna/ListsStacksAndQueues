@@ -1,4 +1,4 @@
-namespace Common
+namespace ListsStacksAndQueues
 {
 
     public class GenericQueue<T> : IPushPop<T>

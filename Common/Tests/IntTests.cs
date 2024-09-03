@@ -1,9 +1,9 @@
 
+using Common;
 using System;
 using System.Diagnostics;
-using Common;
 
-namespace RunTestsConsoleApp
+namespace ListsStacksAndQueues
 {
     public class IntTests
     {
@@ -57,7 +57,7 @@ namespace RunTestsConsoleApp
                 return false;
             }
 
-            
+
 
             Console.WriteLine($"PASSED");
 
@@ -71,7 +71,7 @@ namespace RunTestsConsoleApp
             Console.WriteLine($"PASSED");
 
             int size = 10;
-            int maxSize= 10000;
+            int maxSize = 10000;
             Console.WriteLine($"\n2. Measuring speed");
             Stopwatch stopwatch = new Stopwatch();
             int numMaxDecimalDigits = 5;
@@ -83,13 +83,13 @@ namespace RunTestsConsoleApp
                 for (int i = 0; i < size; i++)
                     myList.Add(i);
                 stopwatch.Stop();
-                Console.Write($"{Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Add) ");
+                Console.Write($"{Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Add) ");
 
                 //Count
                 stopwatch.Start();
                 myList.Count();
                 stopwatch.Stop();
-                Console.Write($", {Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Count)");
+                Console.Write($", {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Count)");
 
                 //Add again n elements
                 for (int i = 0; i < size; i++)
@@ -100,7 +100,7 @@ namespace RunTestsConsoleApp
                 for (int i = 0; i < size; i++)
                     myList.Remove(0);
                 stopwatch.Stop();
-                Console.Write($", {Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Remove 1st)");
+                Console.Write($", {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Remove 1st)");
 
                 //Add again n elements
                 for (int i = 0; i < size; i++)
@@ -111,7 +111,7 @@ namespace RunTestsConsoleApp
                 for (int i = 0; i < size; i++)
                     myList.Remove(myList.Count() - 1);
                 stopwatch.Stop();
-                Console.WriteLine($", {Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds,numMaxDecimalDigits)}s (Remove last)");
+                Console.WriteLine($", {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Remove last)");
 
                 size *= 10;
             }
@@ -194,13 +194,13 @@ namespace RunTestsConsoleApp
                 for (int i = 0; i < size; i++)
                     myList.Add(i);
                 stopwatch.Stop();
-                Console.Write($"{Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Add) ");
+                Console.Write($"{Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Add) ");
 
                 //Count
                 stopwatch.Start();
                 myList.Count();
                 stopwatch.Stop();
-                Console.Write($", {Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Count)");
+                Console.Write($", {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Count)");
 
                 //Add again n elements
                 for (int i = 0; i < size; i++)
@@ -211,7 +211,7 @@ namespace RunTestsConsoleApp
                 for (int i = 0; i < size; i++)
                     myList.Remove(0);
                 stopwatch.Stop();
-                Console.Write($", {Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Remove 1st)");
+                Console.Write($", {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Remove 1st)");
 
                 //Add again n elements
                 for (int i = 0; i < size; i++)
@@ -222,7 +222,7 @@ namespace RunTestsConsoleApp
                 for (int i = 0; i < size; i++)
                     myList.Remove(myList.Count() - 1);
                 stopwatch.Stop();
-                Console.WriteLine($", {Common.Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Remove last)");
+                Console.WriteLine($", {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numMaxDecimalDigits)}s (Remove last)");
 
                 size *= 10;
             }

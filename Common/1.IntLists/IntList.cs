@@ -1,6 +1,6 @@
 using System;
 
-namespace Common
+namespace ListsStacksAndQueues
 {
     public class IntListNode
     {
