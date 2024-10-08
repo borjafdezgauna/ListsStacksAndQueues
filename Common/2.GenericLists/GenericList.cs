@@ -22,8 +22,9 @@ namespace ListsStacksAndQueues
     public class GenericList<T> : IGenericList<T>
     {
         GenericListNode<T> First = null;
+        GenericListNode<T> Last = null;
 
-        public string AsString()
+        public override string ToString()
         {
             GenericListNode<T> node = First;
             string output = "[";
@@ -43,22 +44,15 @@ namespace ListsStacksAndQueues
             //TODO #1: add a new element to the end of the list
         }
 
-        public GenericListNode<T> FindNode(int index)
-        {
-            //TODO #2: Return the element in position 'index'
-
-            return null;
-        }
-
         public T Get(int index)
         {
-            //TODO #3: return the element on the index-th position. YOU MUST USE FindNode(int). Return the default value for object class T if the position is out of bounds
+            //TODO #2: return the element on the index-th position. YOU MUST USE FindNode(int). Return the default value for object class T if the position is out of bounds
 
             return default(T);
         }
         public int Count()
         {
-            //TODO #4: return the number of elements on the list
+            //TODO #3: return the number of elements on the list
 
             return 0;
         }
@@ -66,16 +60,16 @@ namespace ListsStacksAndQueues
 
         public void Remove(int index)
         {
-            //TODO #5: remove the element on the index-th position. Do nothing if position is out of bounds
+            //TODO #4: remove the element on the index-th position. Do nothing if position is out of bounds
         }
 
         public void Clear()
         {
-            //TODO #6: remove all the elements on the list
+            //TODO #5: remove all the elements on the list
         }
         public IEnumerator GetEnumerator()
         {
-            //TODO #7: return all items one by one using "yield return ..."
+            //TODO #6: return all items one by one using "yield return ..."
             return null;
         }
     }

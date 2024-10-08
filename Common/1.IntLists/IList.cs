@@ -9,8 +9,6 @@ namespace ListsStacksAndQueues
 {
     public interface IList : IEnumerable
     {
-        string AsString();
-
         int Count();
 
         int Get(int index);

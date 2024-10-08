@@ -20,7 +20,7 @@ namespace ListsStacksAndQueues
 
         //This method returns all the elements on the list as a string
         //Use it as an example on how to access all the elements on the list
-        public string AsString()
+        public override string ToString()
         {
             IntListNode node = First;
             string output = "[";
