@@ -41,16 +41,10 @@ namespace ListsStacksAndQueues
             //TODO #1: add a new integer to the end of the list
         }
 
-        private IntListNode GetNode(int index)
-        {
-            //TODO #2: Return the element in position 'index'
-            return null;
-        }
-
-        
+                
         public int Get(int index)
         {
-            //TODO #3: return the element on the index-th position. YOU MUST USE GetNode(int). O if the position is out of bounds
+            //TODO #3: return the element on the index-th position. O if the position is out of bounds
             return 0;
         }
 

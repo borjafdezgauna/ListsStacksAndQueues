@@ -37,7 +37,7 @@ namespace ListsStacksAndQueues
 
         public int Get(int index)
         {
-            //TODO #4: return the element on the index-th position. YOU MUST USE GetNode(int). O if the position is out of bounds
+            //TODO #4: return the element on the index-th position. O if the position is out of bounds
             return 0;
         }
 
@@ -45,7 +45,7 @@ namespace ListsStacksAndQueues
         
         public int Count()
         {
-            //TODO #5: return the number of elements on the lis
+            //TODO #5: return the number of elements on the list
             return 0;
         }
 
