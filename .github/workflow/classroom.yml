@@ -1,0 +1,203 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: IntListBasicTests
+      id: intlistbasictests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: IntListBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~IntListBasicTests
+        timeout: 10
+        max-score: 1
+    - name: IntListEnumerator
+      id: intlistenumerator
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: IntListEnumerator
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~IntListEnumerator
+        timeout: 10
+        max-score: 1
+    - name: IntArrayListResize
+      id: intarraylistresize
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: IntArrayListResize
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~IntArrayListResize
+        timeout: 10
+        max-score: 1
+    - name: IntArrayListBasicTests
+      id: intarraylistbasictests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: IntArrayListBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~IntArrayListBasicTests
+        timeout: 10
+        max-score: 1
+    - name: IntArrayListEnumerator
+      id: intarraylistenumerator
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: IntArrayListEnumerator
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~IntArrayListEnumerator
+        timeout: 10
+        max-score: 1
+    - name: ArrayListResize
+      id: arraylistresize
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: ArrayListResize
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~ArrayListResize
+        timeout: 10
+        max-score: 1
+    - name: ListBasicTests
+      id: listbasictests
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: ListBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~ListBasicTests
+        input: ''
+        expected-output: ''
+        comparison-method: contains
+        timeout: 10
+        max-score: 2
+    - name: ListEnumerator
+      id: listenumerator
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: ListEnumerator
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~ListEnumerator
+        timeout: 10
+        max-score: 1
+    - name: ArrayListBasicTests
+      id: arraylistbasictests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: ArrayListBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~ArrayListBasicTests
+        timeout: 10
+        max-score: 2
+    - name: ArrayListEnumerator
+      id: arraylistenumerator
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: ArrayListEnumerator
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~ArrayListEnumerator
+        timeout: 10
+        max-score: 1
+    - name: StackIntBasicTests
+      id: stackintbasictests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: StackIntBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~StackIntBasicTests
+        timeout: 10
+        max-score: 1
+    - name: StackStringeBasicTests
+      id: stackstringebasictests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: StackStringeBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~StackStringeBasicTests
+        timeout: 10
+        max-score: 1
+    - name: QueueIntBasicTests
+      id: queueintbasictests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: QueueIntBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~QueueIntBasicTests
+        timeout: 10
+        max-score: 1
+    - name: QueueStringBasicTests
+      id: queuestringbasictests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: QueueStringBasicTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~QueueStringBasicTests
+        timeout: 10
+        max-score: 1
+    - name: ListPerformanceTests
+      id: listperformancetests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: ListPerformanceTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~ListPerformanceTests
+        timeout: 10
+        max-score: 3
+    - name: ArrayListPerformanceTests
+      id: arraylistperformancetests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: ArrayListPerformanceTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~ArrayListPerformanceTests
+        timeout: 10
+        max-score: 3
+    - name: StackPerformanceTests
+      id: stackperformancetests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: StackPerformanceTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~StackPerformanceTests
+        timeout: 10
+        max-score: 1
+    - name: QueuePerformanceTests
+      id: queueperformancetests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: QueuePerformanceTests
+        setup-command: ''
+        command: dotnet test --filter FullyQualifiedName~QueuePerformanceTests
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        INTLISTBASICTESTS_RESULTS: "${{steps.intlistbasictests.outputs.result}}"
+        INTLISTENUMERATOR_RESULTS: "${{steps.intlistenumerator.outputs.result}}"
+        INTARRAYLISTRESIZE_RESULTS: "${{steps.intarraylistresize.outputs.result}}"
+        INTARRAYLISTBASICTESTS_RESULTS: "${{steps.intarraylistbasictests.outputs.result}}"
+        INTARRAYLISTENUMERATOR_RESULTS: "${{steps.intarraylistenumerator.outputs.result}}"
+        ARRAYLISTRESIZE_RESULTS: "${{steps.arraylistresize.outputs.result}}"
+        LISTBASICTESTS_RESULTS: "${{steps.listbasictests.outputs.result}}"
+        LISTENUMERATOR_RESULTS: "${{steps.listenumerator.outputs.result}}"
+        ARRAYLISTBASICTESTS_RESULTS: "${{steps.arraylistbasictests.outputs.result}}"
+        ARRAYLISTENUMERATOR_RESULTS: "${{steps.arraylistenumerator.outputs.result}}"
+        STACKINTBASICTESTS_RESULTS: "${{steps.stackintbasictests.outputs.result}}"
+        STACKSTRINGEBASICTESTS_RESULTS: "${{steps.stackstringebasictests.outputs.result}}"
+        QUEUEINTBASICTESTS_RESULTS: "${{steps.queueintbasictests.outputs.result}}"
+        QUEUESTRINGBASICTESTS_RESULTS: "${{steps.queuestringbasictests.outputs.result}}"
+        LISTPERFORMANCETESTS_RESULTS: "${{steps.listperformancetests.outputs.result}}"
+        ARRAYLISTPERFORMANCETESTS_RESULTS: "${{steps.arraylistperformancetests.outputs.result}}"
+        STACKPERFORMANCETESTS_RESULTS: "${{steps.stackperformancetests.outputs.result}}"
+        QUEUEPERFORMANCETESTS_RESULTS: "${{steps.queueperformancetests.outputs.result}}"
+      with:
+        runners: intlistbasictests,intlistenumerator,intarraylistresize,intarraylistbasictests,intarraylistenumerator,arraylistresize,listbasictests,listenumerator,arraylistbasictests,arraylistenumerator,stackintbasictests,stackstringebasictests,queueintbasictests,queuestringbasictests,listperformancetests,arraylistperformancetests,stackperformancetests,queueperformancetests
