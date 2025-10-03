@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Lists
 {
-    public class IntTests
+    public class ListTests
     {
         public static bool IntListTest(IIntList myList)
         {
@@ -296,18 +296,33 @@ namespace Lists
             stopwatch.Reset();
             stopwatch.Start();
             System.Threading.Tasks.Task timeoutTask = System.Threading.Tasks.Task.Delay(timeoutSecs * 1000);
-            System.Threading.Tasks.Task testTask = System.Threading.Tasks.Task.Factory.StartNew(
+            System.Threading.Tasks.Task<bool> testTask = System.Threading.Tasks.Task.Factory.StartNew(
                 () =>
                 {
-                    //Add
-                    for (int i = 0; i < NumSamples; i++)
-                        list.Add(initialValues[i % initialValues.Length]);
+                    try
+                    {
+                        //Add
+                        for (int i = 0; i < NumSamples; i++)
+                            list.Add(initialValues[i % initialValues.Length]);
+                        if (list.Count() != NumSamples)
+                            return false;
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
                 });
 
             var winner = System.Threading.Tasks.Task.WhenAny(testTask, timeoutTask).Result;
-            if (testTask == winner)
+            if (testTask.IsCompleted && testTask.Result == true)
             {
-                Console.WriteLine($"'Add' Ok.  (n={NumSamples}) -> {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numDigits)}");
+                Console.WriteLine($"'Add' Ok. (n={NumSamples}) -> {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numDigits)}");
+            }
+            else if (testTask.IsCompleted)
+            {
+                Console.WriteLine($"Error. 'Add' failed");
+                return false;
             }
             else
             {
@@ -322,6 +337,8 @@ namespace Lists
             testTask = System.Threading.Tasks.Task.Factory.StartNew(
                 () =>
                 {
+                    if (list.Count() != NumSamples)
+                        return false;
                     for (int i = 0; i < NumSamples; i++)
                     {
                         if (i % 2 == 0)
@@ -329,13 +346,21 @@ namespace Lists
                         else
                             list.Remove(list.Count() - 1);
                     }
+                    if (list.Count() != 0)
+                        return false;
+                    return true;
                 });
             winner = System.Threading.Tasks.Task.WhenAny(testTask, timeoutTask).Result;
             double t = stopwatch.Elapsed.TotalSeconds;
-            if (testTask.IsCompleted)
+            if (testTask.IsCompleted && testTask.Result == true)
             {
                 Console.WriteLine($"'Remove' Ok. (n={NumSamples}) -> {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numDigits)} s");
                 return true;
+            }
+            else if (testTask.IsCompleted)
+            {
+                Console.WriteLine($"Error. 'Remove' failed");
+                return false;
             }
             else
             {

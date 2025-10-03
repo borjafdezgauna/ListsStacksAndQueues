@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace ListsStacksAndQueues
+namespace Lists
 {
     public class IntListNode
     {
@@ -14,7 +14,7 @@ namespace ListsStacksAndQueues
         }
     }
 
-    public class IntList : IList
+    public class IntList : IIntList
     {
         IntListNode First = null;
 
@@ -35,41 +35,54 @@ namespace ListsStacksAndQueues
             return output;
         }
 
-        
-        public void Add(int value)
-        {
-            //TODO #1: add a new integer to the end of the list
-        }
 
-                
-        public int Get(int index)
-        {
-            //TODO #3: return the element on the index-th position. O if the position is out of bounds
-            return 0;
-        }
-
-        
         public int Count()
         {
-            //TODO #4: return the number of elements on the list
+            //TODO #1: return the number of elements on the list
+            
             return 0;
-        }
-        
-        public void Remove(int index)
-        {
-            //TODO #5: remove the element on the index-th position. Do nothing if position is out of bounds
+            
         }
 
         
+        public int Get(int index)
+        {
+            //TODO #2: return the element on the index-th position. O if the position is out of bounds
+            
+            return 0;
+            
+        }
+
+
+        public void Add(int value)
+        {
+            //TODO #3: add a new integer to the end of the list
+            
+        }
+
+
+        public int Remove(int index)
+        {
+            //TODO #4: remove the element on the index-th position. Do nothing if position is out of bounds
+            //Return the removed item, -1 if the position is incorrect
+            
+            return 0;
+            
+        }
+
+
         public void Clear()
         {
-            //TODO #6: remove all the elements on the list
+            //TODO #5: remove all the elements on the list
+            
         }
 
         public IEnumerator GetEnumerator()
         {
-            //TODO #7: return all items one by one using "yield return ..."
-            return null;
+            //TODO #6 : Return an enumerator using "yield return" for each of the values in this list
+            
+            yield return null;
+            
         }
     }
 }

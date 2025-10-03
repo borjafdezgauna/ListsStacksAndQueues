@@ -1,7 +1,7 @@
 
 using System;
-using Common;
-using ListsStacksAndQueues;
+using Lists;
+
 
 namespace RunTestsConsoleApp
 {
@@ -13,39 +13,48 @@ namespace RunTestsConsoleApp
             if (!IntTests.IntListTest(new IntList()))
                 return;
 
-            Console.WriteLine("\n\n## Testing ArrayList class");
+            Console.WriteLine("\n\n## Testing IntArrayList class");
             if (!IntTests.IntListTest(new IntArrayList(1000000)))
                 return;
 
-            Console.WriteLine("## Testing GenericList class");
-            if (!IntTests.GenericListTest(new GenericList<int>()))
+            Console.WriteLine("\n\n## Testing List class");
+            if (!ListTests.ListTest(new List<int>()))
                 return;
 
-            Console.WriteLine("\n\n## Testing GenericArrayList class");
-            if (!IntTests.GenericListTest(new GenericArrayList<int>(1000000)))
+            bool listPerformancePasses = ListTests.MeasurePerformance(new List<int>(), new int[] { 1, 2, 4, 3 });
+
+            Console.WriteLine("\n\n## Testing ArrayList class");
+            if (!ListTests.ListTest(new ArrayList<int>(1000000)))
                 return;
 
-            Console.WriteLine("\n\n## Testing GenericStack class");
+            bool listArrayPerformancePasses = ListTests.MeasurePerformance(new ArrayList<int>(), new int[] { 1, 2, 4, 3 });
+
+            Console.WriteLine("\n\n## Testing Stack class");
             int[] testIntValues = new int[] { 3, 2, 6, 1, 2 };
             string[] testStringValues = new string[] { "aB", "0x0", "ro", "123", "hitza" };
 
-            if (!StackAndQueuesTests.Test(new GenericStack<int>(), testIntValues))
+            if (!StackAndQueuesTests.Test(new Stack<int>(), testIntValues))
                 return;
 
-            if (!StackAndQueuesTests.Test(new GenericStack<string>(), testStringValues))
+            if (!StackAndQueuesTests.Test(new Stack<string>(), testStringValues))
                 return;
 
-            StackAndQueuesTests.MeasurePerformance(new GenericStack<int>(), testIntValues);
+            bool stackPerformancePasses = StackAndQueuesTests.MeasurePerformance(new Stack<int>(), testIntValues);
 
 
-            Console.WriteLine("\n\n## Testing GenericQueue class");
-            if (!StackAndQueuesTests.Test(new GenericQueue<int>(), testIntValues, true))
+            Console.WriteLine("\n\n## Testing Queue class");
+            if (!StackAndQueuesTests.Test(new Queue<int>(), testIntValues, true))
                 return;
 
-            if (!StackAndQueuesTests.Test(new GenericQueue<string>(), testStringValues, true))
+            if (!StackAndQueuesTests.Test(new Queue<string>(), testStringValues, true))
                 return;
 
-            StackAndQueuesTests.MeasurePerformance(new GenericQueue<int>(), testIntValues);
+            bool queuePerformancePasses = StackAndQueuesTests.MeasurePerformance(new Queue<int>(), testIntValues);
+
+            if (listPerformancePasses && listArrayPerformancePasses && stackPerformancePasses && queuePerformancePasses)
+                Console.WriteLine("ASSIGNMENT FINISHED: ALL TESTS PASSED");
+            else
+                Console.WriteLine("ALL THE CLASSES WORK PROPERLY BUT DIDN'T PASS THE PERFORMANCE TEST");
         }
     }
 }

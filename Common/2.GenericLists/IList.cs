@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListsStacksAndQueues
+namespace Lists
 {
-    public interface IGenericList<T> : IEnumerable
+    public interface IList<T> : IEnumerable
     {
         int Count();
 
@@ -15,7 +15,7 @@ namespace ListsStacksAndQueues
 
         void Add(T value);
 
-        void Remove(int index);
+        T Remove(int index);
 
         void Clear();
     }

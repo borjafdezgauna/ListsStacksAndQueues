@@ -1,4 +1,4 @@
-using ListsStacksAndQueues;
+using Lists;
 
 namespace Tests
 {
@@ -7,90 +7,122 @@ namespace Tests
         [Fact]
         public void IntListBasicTests()
         {
-            Assert.True(IntTests.IntListTest(new IntList()));
+            Assert.True(ListTests.IntListTest(new IntList()));
         }
 
         [Fact]
         public void IntListEnumerator()
         {
-            Assert.True(IntTests.ListEnumeratorTest(new IntList()));
+            Assert.True(ListTests.ListEnumeratorTest(new IntList()));
 
+        }
+
+        [Fact]
+        public void IntArrayListResize()
+        {
+            IntArrayList arrayList = new IntArrayList(10);
+            for(int i= 0; i< 20; i++)
+                arrayList.Add(i);
+            Assert.Equal(20, arrayList.Count());
         }
 
         [Fact]
         public void IntArrayListBasicTests()
         {
 
-            Assert.True(IntTests.IntListTest(new IntArrayList(1000000)));
+            Assert.True(ListTests.IntListTest(new IntArrayList(1000000)));
         }
 
         [Fact]
         public void IntArrayListEnumerator()
         {
-            Assert.True(IntTests.ListEnumeratorTest(new IntArrayList(1000000)));
-
+            Assert.True(ListTests.ListEnumeratorTest(new IntArrayList(1000000)));
+            
         }
 
         [Fact]
-        public void GenericListBasicTests()
+        public void ArrayListResize()
         {
 
-            Assert.True(IntTests.GenericListTest(new GenericList<int>()));
+            ArrayList<int> arrayList = new ArrayList<int>(10);
+            for (int i = 0; i < 20; i++)
+                arrayList.Add(i);
+            Assert.Equal(20, arrayList.Count());
         }
         [Fact]
-        public void GenericListEnumerator()
+        public void ListBasicTests()
         {
-            Assert.True(IntTests.ListEnumeratorTest(new GenericList<int>()));
+
+            Assert.True(ListTests.ListTest(new List<int>()));
+        }
+        [Fact]
+        public void ListEnumerator()
+        {
+            Assert.True(ListTests.ListEnumeratorTest(new List<int>()));
 
         }
         [Fact]
-        public void GenericArrayListBasicTests()
+        public void ArrayListBasicTests()
         {
-            Assert.True(IntTests.GenericListTest(new GenericArrayList<int>(1000000)));
+            Assert.True(ListTests.ListTest(new ArrayList<int>(1000000)));
         }
         [Fact]
-        public void GenericArrayListEnumerator()
+        public void ArrayListEnumerator()
         {
-            Assert.True(IntTests.ListEnumeratorTest(new GenericArrayList<int>(1000000)));
+            Assert.True(ListTests.ListEnumeratorTest(new ArrayList<int>(1000000)));
 
         }
         [Fact]
-        public void GenericStackIntBasicTests()
+        public void StackIntBasicTests()
         {
             int[] testIntValues = new int[] { 3, 2, 6, 1, 2 };
-            Assert.True(StackAndQueuesTests.Test(new GenericStack<int>(), testIntValues));
+            Assert.True(StackAndQueuesTests.Test(new Lists.Stack<int>(), testIntValues));
         }
         [Fact]
-        public void GenericStackStringeBasicTests()
+        public void StackStringeBasicTests()
         {
             string[] testStringValues = new string[] { "aB", "0x0", "ro", "123", "hitza" };
-            Assert.True(StackAndQueuesTests.Test(new GenericStack<string>(), testStringValues));
+            Assert.True(StackAndQueuesTests.Test(new Lists.Stack<string>(), testStringValues));
         }
         [Fact]
-        public void GenericQueueIntBasicTests()
+        public void QueueIntBasicTests()
         {
             int[] testIntValues = new int[] { 3, 2, 6, 1, 2 };
-            Assert.True(StackAndQueuesTests.Test(new GenericQueue<int>(), testIntValues, true));
+            Assert.True(StackAndQueuesTests.Test(new Lists.Queue<int>(), testIntValues, true));
         }
         [Fact]
-        public void GenericQueueStringBasicTests()
+        public void QueueStringBasicTests()
         {
             string[] testStringValues = new string[] { "aB", "0x0", "ro", "123", "hitza" };
-            Assert.True(StackAndQueuesTests.Test(new GenericQueue<string>(), testStringValues, true));
+            Assert.True(StackAndQueuesTests.Test(new Lists.Queue<string>(), testStringValues, true));
         }
 
         [Fact]
-        public void GenericStackPerformanceTests()
+        public void ListPerformanceTests()
         {
             int[] testIntValues = new int[] { 3, 2, 6, 1, 2 };
-            Assert.True(StackAndQueuesTests.MeasurePerformance(new GenericStack<int>(), testIntValues));
+            Assert.True(ListTests.MeasurePerformance(new List<int>(), testIntValues));
         }
 
         [Fact]
-        public void GenericQueuePerformanceTests()
+        public void ArrayListPerformanceTests()
         {
             int[] testIntValues = new int[] { 3, 2, 6, 1, 2 };
-            Assert.True(StackAndQueuesTests.MeasurePerformance(new GenericQueue<int>(), testIntValues));
+            Assert.True(ListTests.MeasurePerformance(new List<int>(), testIntValues));
+        }
+
+        [Fact]
+        public void StackPerformanceTests()
+        {
+            int[] testIntValues = new int[] { 3, 2, 6, 1, 2 };
+            Assert.True(StackAndQueuesTests.MeasurePerformance(new Lists.Stack<int>(), testIntValues));
+        }
+
+        [Fact]
+        public void QueuePerformanceTests()
+        {
+            int[] testIntValues = new int[] { 3, 2, 6, 1, 2 };
+            Assert.True(StackAndQueuesTests.MeasurePerformance(new Lists.Queue<int>(), testIntValues));
         }
     }
 }

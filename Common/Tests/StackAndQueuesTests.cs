@@ -1,13 +1,11 @@
-using Common;
 using System;
-using System.Data.SqlTypes;
 using System.Diagnostics;
 
-namespace ListsStacksAndQueues
+namespace Lists
 {
     public class StackAndQueuesTests
     {
-        const int numSamples = 10000;
+        const int NumSamples = 100000;
 
         public static bool Test<T>(IPushPop<T> pushPop, T[] initialValues, bool isQueue = false)
         {
@@ -56,12 +54,10 @@ namespace ListsStacksAndQueues
         public static bool MeasurePerformance<T>(IPushPop<T> pushPop, T[] initialValues)
         {
             int numDigits = 3;
-            int timeoutSecs = 10;
-            Console.WriteLine($"\n# Measuring performance (n={numSamples})");
+            int timeoutSecs = 1;
+            Console.WriteLine($"\n# Measuring performance (n={NumSamples})");
 
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Reset();
-            stopwatch.Start();
+            Stopwatch stopwatch = Stopwatch.StartNew();
             System.Threading.Tasks.Task timeoutTask = System.Threading.Tasks.Task.Delay(timeoutSecs * 1000);
             System.Threading.Tasks.Task<bool> testTask = System.Threading.Tasks.Task.Factory.StartNew(
                 () =>
@@ -69,60 +65,70 @@ namespace ListsStacksAndQueues
                     try
                     {
                         //Push
-                        for (int i = 0; i < numSamples; i++)
+                        for (int i = 0; i < NumSamples; i++)
                             pushPop.Push(initialValues[i % initialValues.Length]);
-                        return pushPop.Count() == numSamples;
+                        if (pushPop.Count() != NumSamples)
+                            return false;
                     }
                     catch
                     {
                         return false;
                     }
+                    return true;
                 });
 
             var winner = System.Threading.Tasks.Task.WhenAny(testTask, timeoutTask).Result;
-            if (testTask == winner && testTask.Result)
+            if (testTask.IsCompleted && testTask.Result)
             {
-                Console.WriteLine($"Ok. Push (n={numSamples}) -> {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numDigits)}");
+                Console.WriteLine($"'Push' Ok. (n={NumSamples}) -> {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numDigits)}");
             }
-            else
+            else if (testTask.IsCompleted)
             {
-                Console.WriteLine("Error. The task timed out (> 30s)");
+                Console.WriteLine($"Error. 'Push' failed");
                 return false;
             }
-            //Add again n elements
-            for (int i = 0; i < numSamples; i++)
-                pushPop.Push(initialValues[i % initialValues.Length]);
-
+            else if (testTask.IsCompleted)
+            {
+                Console.WriteLine($"Error. 'Push' timed out (> {timeoutSecs}s)");
+                return false;
+            }
             //Remove first element
-            stopwatch.Reset();
-            stopwatch.Start();
+            stopwatch = Stopwatch.StartNew();
             timeoutTask = System.Threading.Tasks.Task.Delay(timeoutSecs * 1000);
             testTask = System.Threading.Tasks.Task.Factory.StartNew(
                 () =>
                 {
                     try
                     {
-                        for (int i = 0; i < numSamples; i++)
+                        if (pushPop.Count() != NumSamples)
+                            return false;
+                        for (int i = 0; i < NumSamples; i++)
                             pushPop.Pop();
-                        return pushPop.Count() == 0;
+                        if (pushPop.Count() != 0)
+                            return false;
                     }
                     catch
                     {
                         return false;
                     }
+                    return true;
                 });
             winner = System.Threading.Tasks.Task.WhenAny(testTask, timeoutTask).Result;
             if (testTask.IsCompleted && testTask.Result)
             {
-                Console.WriteLine($"Ok. Pop (n={numSamples}) -> {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numDigits)} s");
-                return true;
+                Console.WriteLine($"'Pop' Ok. (n={NumSamples}) -> {Utils.ToString(stopwatch.Elapsed.TotalSeconds, numDigits)}");
             }
-            else
+            else if (testTask.IsCompleted)
             {
-                Console.WriteLine("Error. The task timed out (> 30s)");
+                Console.WriteLine($"Error. 'Pop' failed");
                 return false;
             }
-
+            else if (testTask.IsCompleted)
+            {
+                Console.WriteLine($"Error. 'Pop' timed out (> {timeoutSecs}s)");
+                return false;
+            }
+            return true;
         }
     }
 }

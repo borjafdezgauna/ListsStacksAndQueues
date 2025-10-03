@@ -1,5 +1,5 @@
 
-namespace ListsStacksAndQueues
+namespace Lists
 {
     public interface IPushPop<T>
     {
